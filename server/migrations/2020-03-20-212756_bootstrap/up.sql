@@ -23,5 +23,5 @@ CREATE TABLE IF NOT EXISTS location_reports (
     id TEXT PRIMARY KEY,
     coordinates POINT NOT NULL,
     location_id SERIAL,
-    FOREIGN KEY (id) REFERENCES location (id) ON DELETE CASCADE
+    FOREIGN KEY (location_id) REFERENCES location (id) ON DELETE CASCADE
 );

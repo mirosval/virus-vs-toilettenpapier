@@ -1,37 +1,16 @@
 <script>
-export let name;
-let geoloc;
-
-function showLocation(position) {
-    var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
-    geoloc = "Latitude : " + latitude + " Longitude: " + longitude;
-}
-
-function errorHandler(err) {
-    if (err.code == 1) {
-        alert("Error: Access is denied!");
-    } else if( err.code == 2) {
-        alert("Error: Position is unavailable!");
-    }
-}
-
-function getLocation() {
-    if (navigator.geolocation) {
-        var options = {timeout:60000}; // timeout at 60 seconds
-        navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
-    } else {
-        alert("Sorry, browser does not support geolocation!");
-    }
-}
-
-getLocation();
-
+  import Navbar from "./Components/Navbar.svelte";
+  import Banner from "./Components/Banner.svelte";
+  import GeoLoc from "./Components/GeoLoc.svelte";
+  import DATA from "./Data/data";
 </script>
 
 <main>
-	<h1>Lokal-Tracker {name}!</h1>
-	<p>It seems you are at: {geoloc}</p>
+<!-- Navbar -->
+<Navbar navlists={DATA.NAVBAR_DATA} header={DATA.HEADER} />
+<!-- Banner -->
+<Banner bannerData={DATA.BANNER_DATA} } />
+	<GeoLoc/>
 </main>
 
 <style>

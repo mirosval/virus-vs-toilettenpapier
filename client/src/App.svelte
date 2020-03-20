@@ -2,6 +2,7 @@
   import Navbar from "./Components/Navbar.svelte";
   import Banner from "./Components/Banner.svelte";
   import GeoLoc from "./Components/GeoLoc.svelte";
+  import DataEntry from "./Components/DataEntry.svelte";
   import DATA from "./Data/data";
 </script>
 
@@ -11,6 +12,7 @@
 <!-- Banner -->
 <Banner bannerData={DATA.BANNER_DATA} } />
 	<GeoLoc/>
+	<DataEntry footerData={DATA.FOOTER_DATA} header={DATA.HEADER} />
 </main>
 
 <style>

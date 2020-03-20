@@ -100,7 +100,7 @@ const FOOTER_DATA = {
     EMAIL: "nixalar@gmail.com"
   },
   SUBSCRIBE_NEWSLETTER: "Subscribe newsletter",
-  SUBSCRIBE: "Subscribe"
+  SEARCH_STORE: "Search store"
 };
 
 const MOCK_DATA = {

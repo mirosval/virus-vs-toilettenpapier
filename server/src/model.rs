@@ -1,4 +1,5 @@
-#[macro_use]
+#![feature(custom_derive, custom_attribute, plugin)]
+
 use super::schema::location;
 
 #[derive(Eq, PartialEq, Debug, Queryable)]

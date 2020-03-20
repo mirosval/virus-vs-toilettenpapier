@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS location (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS product (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    reference TEXT NOT NULL
+);

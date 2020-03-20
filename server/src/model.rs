@@ -1,5 +1,3 @@
-#[macro_use]
-
 #[derive(Queryable)]
 pub struct Location {
     pub id: u64,

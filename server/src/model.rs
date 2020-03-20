@@ -4,7 +4,7 @@ use super::schema::location;
 
 #[derive(Eq, PartialEq, Debug, Queryable)]
 pub struct Location {
-    pub id: u32,
+    pub id: i32,
     name: String,
 }
 

@@ -22,6 +22,6 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE TABLE IF NOT EXISTS location_reports (
     id TEXT PRIMARY KEY,
     coordinates POINT NOT NULL,
-    location_id SERIAL,
+    location_id SERIAL NOT NULL,
     FOREIGN KEY (location_id) REFERENCES location (id) ON DELETE CASCADE
 );

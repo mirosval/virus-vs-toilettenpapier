@@ -6,6 +6,8 @@ table! {
 }
 
 table! {
+    use diesel::sql_types::*;
+    use diesel_geometry::sql_types::*;
     location_reports (id) {
         id -> Text,
         coordinates -> Point,

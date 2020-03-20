@@ -1,6 +1,10 @@
-#[derive(Queryable)]
+#![feature(custom_derive, custom_attribute, plugin)]
+
+use super::schema::location;
+
+#[derive(Eq, PartialEq, Debug, Queryable)]
 pub struct Location {
-    pub id: u64,
+    pub id: i32,
     name: String,
 }
 

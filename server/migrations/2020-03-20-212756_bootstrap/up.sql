@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS location (
     name TEXT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS product (
+CREATE TABLE IF NOT EXISTS products (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     reference TEXT NOT NULL

@@ -1,6 +1,9 @@
-#[derive(Queryable)]
+#[macro_use]
+use super::schema::location;
+
+#[derive(Eq, PartialEq, Debug, Queryable)]
 pub struct Location {
-    pub id: u64,
+    pub id: u32,
     name: String,
 }
 

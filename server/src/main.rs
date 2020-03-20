@@ -3,6 +3,7 @@ use serde::{Serialize, Deserialize};
 
 #[tokio::main]
 async fn main() {
+    let _ = establish_connection().await;
     let api = filters::checkins();
 let routes = api.with(warp::log("checkins"));
 

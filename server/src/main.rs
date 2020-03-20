@@ -2,6 +2,7 @@ use warp::Filter;
 
 #[tokio::main]
 async fn main() {
+    let _ = establish_connection().await;
     let checkin = warp::path!("v1" / "checkin").map(|| "checkin");
     let app = checkin;
 

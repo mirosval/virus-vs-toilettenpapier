@@ -44,7 +44,7 @@ async fn main() {
 
 mod filters {
     use super::handlers;
-    use super::model::NewCheckin;
+    use super::model::NewJsonCheckin;
     use super::Pool;
     use warp::Filter;
 
@@ -73,7 +73,7 @@ mod filters {
             .and_then(handlers::create_checkin)
     }
 
-    fn json_body() -> impl Filter<Extract = (NewCheckin,), Error = warp::Rejection> + Clone {
+    fn json_body() -> impl Filter<Extract = (NewJsonCheckin,), Error = warp::Rejection> + Clone {
         // When accepting a body, we want a JSON body
         // (and to reject huge payloads)...
         warp::body::content_length_limit(1024 * 16).and(warp::body::json())
@@ -88,7 +88,7 @@ mod filters {
 
 mod handlers {
     use super::Pool;
-    use crate::model::{Checkin, NewCheckin};
+    use crate::model::{Checkin, NewCheckin, NewJsonCheckin};
     use crate::schema::checkins;
     use diesel::sql_query;
     use diesel::RunQueryDsl;
@@ -119,10 +119,11 @@ mod handlers {
     }
 
     pub async fn create_checkin(
-        checkin: NewCheckin,
+        json_checkin: NewJsonCheckin,
         pool: Pool,
     ) -> Result<impl warp::Reply, Infallible> {
         info!("create_checkin");
+let checkin = NewCheckin::from(json_checkin);
         pool.get()
             .and_then(|conn| {
                 let res: Result<Checkin, _> = diesel::insert_into(checkins::table)
@@ -146,7 +147,7 @@ mod handlers {
 #[cfg(test)]
 mod tests {
     use crate::get_connection_pool;
-    use crate::model::NewCheckin;
+    use crate::model::NewJsonCheckin;
     use chrono::Utc;
     use diesel_geometry::data_types::PgPoint;
     use warp::http::StatusCode;
@@ -162,13 +163,13 @@ mod tests {
         let res = request()
             .method("POST")
             .path("/v1/checkins")
-            .json(&NewCheckin {
-                gps: PgPoint(1.1, 2.2),
+            .json(&NewJsonCheckin {
+                gps: [1.1, 2.2],
                 location_name: "some location".to_string(),
                 crowded_level: 3,
                 user_id: "some user".to_string(),
                 client_id: "some client".to_string(),
-                created_at: Utc::now().naive_utc(),
+                missing_goods: vec![String::from("flour")],
             })
             .reply(&api)
             .await;

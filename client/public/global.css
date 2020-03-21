@@ -1,8 +1,9 @@
 :root {
   --gradient: linear-gradient(90deg, #0072ff 0%, #00d4ff 100%);
   --light: #fff;
-  --green: #4CAF50;
+  --green: #4caf50;
   --grey: #f8f9fa;
+  --blue-accent: #007bc8;
 }
 
 html,
@@ -11,9 +12,10 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 .main-bgcolor {
-  background: var(--green);
+  background: var(--blue-accent);
 }
 .light-color {
   color: var(--light) !important;
@@ -33,4 +35,3 @@ body {
 .section-body {
   padding: 20px 0;
 }
-

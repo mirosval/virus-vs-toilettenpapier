@@ -1,9 +1,21 @@
 use super::Pool;
+use crate::model::CheckinsAroundRequest;
 use crate::model::{Checkin, NewCheckin, NewJsonCheckin};
 use crate::schema::checkins;
 use diesel::RunQueryDsl;
 use std::convert::Infallible;
 use warp::http::StatusCode;
+
+pub async fn checkins_around(
+    req: CheckinsAroundRequest,
+    pool: Pool,
+) -> Result<impl warp::Reply, Infallible> {
+    // pool.get()
+    //     .and_then(|conn| {
+    //         let q = sql("selet ")
+    //     })
+    Ok(StatusCode::OK)
+}
 
 pub async fn list_checkins(pool: Pool) -> Result<impl warp::Reply, Infallible> {
     pool.get()

@@ -3,10 +3,10 @@ extern crate diesel;
 #[macro_use]
 extern crate log;
 
+mod filters;
+mod handlers;
 mod model;
 mod schema;
-mod handlers;
-mod filters;
 
 use diesel::r2d2;
 use diesel::PgConnection;

@@ -1,21 +1,8 @@
-use crate::schema::{ checkins, location};
-use chrono::Utc;
-use serde::{Deserialize, Serialize};
-
-#[derive(Eq, PartialEq, Debug, Queryable)]
-pub struct Location {
-    pub id: i32,
-    name: String,
-}
-
-#[derive(Insertable)]
-#[table_name = "location"]
-pub struct NewLocation<'a> {
-    pub name: &'a str,
-}
-
+use crate::schema::checkins;
 use chrono::NaiveDateTime;
-use diesel_geometry::data_types::PgPoint;
+use chrono::Utc;
+use diesel_geography::types::GeogPoint;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NewJsonCheckin {
@@ -30,7 +17,7 @@ pub struct NewJsonCheckin {
 #[derive(Debug, Insertable, Serialize, Deserialize)]
 #[table_name = "checkins"]
 pub struct NewCheckin {
-    pub gps: PgPoint,
+    pub gps: GeogPoint,
     pub location_name: String,
     pub crowded_level: i32,
     pub missing_goods: Vec<String>,
@@ -42,7 +29,11 @@ pub struct NewCheckin {
 impl From<NewJsonCheckin> for NewCheckin {
     fn from(checkin: NewJsonCheckin) -> NewCheckin {
         NewCheckin {
-            gps: PgPoint(checkin.gps[0], checkin.gps[1]),
+            gps: GeogPoint {
+                x: checkin.gps[0],
+                y: checkin.gps[1],
+                srid: None,
+            },
             location_name: checkin.location_name,
             crowded_level: checkin.crowded_level,
             missing_goods: checkin.missing_goods,
@@ -56,11 +47,19 @@ impl From<NewJsonCheckin> for NewCheckin {
 #[derive(Debug, Queryable, Serialize, Deserialize)]
 pub struct Checkin {
     pub id: i32,
-    pub gps: PgPoint,
+    pub gps: GeogPoint,
     pub location_name: String,
     pub crowded_level: i32,
     pub missing_goods: Vec<String>,
     pub user_id: String,
     pub client_id: String,
     pub created_at: NaiveDateTime,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CheckinsAroundRequest {
+    pub gps: [f64; 2],
+    pub radius: i32,
+    pub offset: i32,
+    pub limit: i32,
 }

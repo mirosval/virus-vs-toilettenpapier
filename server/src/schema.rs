@@ -1,10 +1,12 @@
+#![allow(unused_imports)]
+
 table! {
-    use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Int4, Text, Timestamp, Array};
+    use diesel::sql_types::*;
+    use diesel_geography::sql_types::*;
 
     checkins (id) {
         id -> Int4,
-        gps -> Point,
+        gps -> Geography,
         location_name -> Text,
         crowded_level -> Int4,
         missing_goods -> Array<Text>,
@@ -15,36 +17,16 @@ table! {
 }
 
 table! {
-    location (id) {
-        id -> Int4,
-        name -> Text,
+    use diesel::sql_types::*;
+    use diesel_geography::sql_types::*;
+
+    spatial_ref_sys (srid) {
+        srid -> Int4,
+        auth_name -> Nullable<Varchar>,
+        auth_srid -> Nullable<Int4>,
+        srtext -> Nullable<Varchar>,
+        proj4text -> Nullable<Varchar>,
     }
 }
 
-table! {
-    use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Int4, Text};
-
-    location_reports (id) {
-        id -> Text,
-        coordinates -> Point,
-        location_id -> Int4,
-    }
-}
-
-table! {
-    products (id) {
-        id -> Int4,
-        name -> Text,
-        reference -> Text,
-    }
-}
-
-joinable!(location_reports -> location (location_id));
-
-allow_tables_to_appear_in_same_query!(
-    checkins,
-    location,
-    location_reports,
-    products,
-);
+allow_tables_to_appear_in_same_query!(checkins, spatial_ref_sys,);

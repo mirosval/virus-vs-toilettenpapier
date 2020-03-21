@@ -3,5 +3,5 @@
   import DATA from "../Data/data";
 </script>
 
-<DataEntry footerData={DATA.FOOTER_DATA} header={DATA.HEADER}/>
+<DataEntry dataEntryData={DATA.DATA_ENTRY}/>
 

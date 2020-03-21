@@ -44,7 +44,8 @@ impl From<NewJsonCheckin> for NewCheckin {
     }
 }
 
-#[derive(Debug, Queryable, Serialize, Deserialize)]
+#[derive(Debug, Queryable, QueryableByName, Serialize, Deserialize)]
+#[table_name = "checkins"]
 pub struct Checkin {
     pub id: i32,
     pub gps: GeogPoint,

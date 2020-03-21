@@ -3,16 +3,12 @@ const HEADER = "Nixalar";
 
 const NAVBAR_DATA = [
   { id: 1, url: "/", label: "Home" },
-  { id: 2, url: "#data-entry", label: "Daten eintragen" },
-  { id: 3, url: "#data-list", label: "Daten abfragen" },
-  { id: 4, url: "#xxx", label: "XXX" },
-  { id: 5, url: "#yyy", label: "YYY" }
+  { id: 2, url: "/add-location", label: "Daten eintragen" }
 ];
 
 const BANNER_DATA = {
   HEADING: "Bestands-Tracker",
-  DECRIPTION:
-    "Die beste App, um herauszufinden wo man sicher einkauft.",
+  DECRIPTION: "Die beste App, um herauszufinden wo man sicher einkauft.",
   TUTORIAL_URL:
     "https://www.thinkwithgoogle.com/intl/en-gb/marketing-resources/programmatic/google-digital-academy/",
   WATCH_TUTORIAL: "Watch Tutorials"

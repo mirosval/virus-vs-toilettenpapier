@@ -4,6 +4,7 @@ let geoloc;
 function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
+    // geoloc = "Latitude : " + latitude + " Longitude: " + longitude;
     geoloc = "Latitude : " + latitude + " Longitude: " + longitude;
 }
 
@@ -30,5 +31,4 @@ getLocation();
 
 <main>
 	<p>It seems you are here: {geoloc}</p>
-	<img src="heatmap_dummy.png" alt="Heatmap dummy">
 </main>

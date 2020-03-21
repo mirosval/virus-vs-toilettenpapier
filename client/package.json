@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "page.js": "^4.13.3",
-    "sirv-cli": "^0.4.4"
+    "sirv-cli": "^0.4.4",
+    "mapbox-gl": "^1.6.0"
   }
 }

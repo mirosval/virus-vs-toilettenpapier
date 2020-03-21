@@ -1,6 +1,9 @@
-#[derive(Queryable)]
+use serde::{Serialize, Deserialize};
+use crate::schema::{location, checkins};
+
+#[derive(Eq, PartialEq, Debug, Queryable)]
 pub struct Location {
-    pub id: u64,
+    pub id: i32,
     name: String,
 }
 
@@ -10,3 +13,16 @@ pub struct NewLocation<'a> {
     pub name: &'a str,
 }
 
+use diesel_geometry::data_types::PgPoint;
+use chrono::NaiveDateTime;
+
+#[derive(Debug, Insertable, Serialize, Deserialize)]
+#[table_name="checkins"]
+pub struct NewCheckin {
+    pub gps_lat: PgPoint,
+    pub location_name: String,
+    pub crowded_level: i32,
+    pub user_id: String,
+    pub client_id: String,
+    pub created_at: NaiveDateTime,
+}

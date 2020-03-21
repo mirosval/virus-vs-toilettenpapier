@@ -3,10 +3,7 @@ const HEADER = "Stocktastic";
 
 const NAVBAR_DATA = [
   { id: 1, url: "/", label: "Home" },
-  { id: 2, url: "#data-entry", label: "Daten eintragen" },
-  { id: 3, url: "#data-list", label: "Daten abfragen" },
-  { id: 4, url: "#xxx", label: "XXX" },
-  { id: 5, url: "#yyy", label: "YYY" }
+  { id: 2, url: "/add-location", label: "Daten eintragen" }
 ];
 
 const BANNER_DATA = {

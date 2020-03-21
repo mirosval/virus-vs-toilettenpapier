@@ -4,7 +4,6 @@ let geoloc;
 function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    // geoloc = "Latitude : " + latitude + " Longitude: " + longitude;
     geoloc = "Latitude : " + latitude + " Longitude: " + longitude;
 }
 

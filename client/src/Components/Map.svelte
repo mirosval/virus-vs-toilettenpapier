@@ -48,46 +48,8 @@
           "icon-allow-overlap": true
         }
       });
-
-      // When clicking on a map marker
-      mapRef.on("click", "places", function({ features }) {
-        const match = features[0];
-        const coordinates = match.geometry.coordinates.slice();
-
-        // Show popup
-        new mapboxgl.Popup()
-          .setLngLat(coordinates)
-          .setHTML(match.properties.description)
-          .addTo(mapRef);
-
-        // Set new active list item
-        activeListItem.set(match.properties.id);
-      });
-
-      // Change the cursor to a pointer when the mouse is over the places layer.
-      mapRef.on("mouseenter", "places", function() {
-        mapRef.getCanvas().style.cursor = "pointer";
-      });
-
-      // Change it back to a pointer when it leaves.
-      mapRef.on("mouseleave", "places", function() {
-        mapRef.getCanvas().style.cursor = "";
-      });
     });
   });
-
-  // Update map center when active list item is updated via list
-  const unsubscribeActiveMapItem = activeMapItem.subscribe(newActiveMapItem => {
-    if (mapRef) {
-      mapRef.flyTo({
-        center: listItems[newActiveMapItem].coordinates
-      });
-    }
-  });
-
-  // Remove listener on unmount
-
-  onDestroy(unsubscribeActiveMapItem);
 </script>
 
 <style>

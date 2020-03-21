@@ -1,9 +1,19 @@
-<div class="slidecontainer">
-  <input type="range" min="1" max="5" value="3" class="slider" id="myRange">
+<script>
+export let CROWDEDNESS;
+</script>
+
+<div class="slidecontainer container">
+  <div class="row">
+    <div class="col">
+      {CROWDEDNESS}
+    </div>
+    <div class="col">
+      <input type="range" min="1" max="5" value="3" class="slider" id="myRange">
+    </div>
+  </div>
 </div>
 
 <style>
-
 .slidecontainer {
   width: 100%; /* Width of the outside container */
 }

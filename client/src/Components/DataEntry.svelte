@@ -9,27 +9,27 @@
   } = dataEntryData;
   import SearchStore from "./SearchStore.svelte";
   import CrowdednessSlider from "./CrowdednessSlider.svelte";
+  import GoodsUnavailable from "./GoodsUnavailable.svelte";
 </script>
 
 <main>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col">
-      <hr/>
         <button type="button" class="btn btn-outline-dark round-border">
           {GET_LOCATION}
         </button>
+      <hr/>
 
         <SearchStore SEARCH_STORE={SEARCH_STORE}/>
+      <hr/>
 
-        {CROWDEDNESS}
-        <CrowdednessSlider/>
+        <CrowdednessSlider CROWDEDNESS={CROWDEDNESS}/>
+      <hr/>
 
-        <input
-          type="text"
-          class="form-control round-border"
-          placeholder="{GOODS_UNAVAILABLE}"
-          />
+        <GoodsUnavailable GOODS_UNAVAILABLE={GOODS_UNAVAILABLE}/>
+      <hr/>
+
         <button type="button" class="btn btn-outline-dark round-border">
           {SUBMIT}
         </button>

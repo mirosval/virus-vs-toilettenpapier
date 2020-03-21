@@ -17,12 +17,14 @@
 </script>
 
 <div class="container">
-      <div class="col">
-    {SEARCH_STORE}
+  <div class="row">
+    <div class="col">
+      {SEARCH_STORE}
     </div>
-      <div class="col">
-    <AutoComplete items={stores} bind:selectedItem={selectedStore} labelFieldName="name" />
+    <div class="col">
+      <AutoComplete items={stores} bind:selectedItem={selectedStore} labelFieldName="name" />
     </div>
+  </div>
 </div>
 
 <style>

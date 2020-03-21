@@ -9,11 +9,8 @@ pub async fn list_checkins(pool: Pool) -> Result<impl warp::Reply, Infallible> {
     pool.get()
         .and_then(|conn| {
             use crate::schema::checkins::dsl::checkins;
-            let aa: Vec<Checkin> = checkins.load(&conn).unwrap();
-            let checkin = aa.first();
-            // let checkins: Vec<Checkin> = sql_query("SELECT * FROM checkins ORDER BY created_at DESC")
-            //     .load(&conn)
-            //     .unwrap();
+            let res = checkins.load(&conn).unwrap();
+            let checkin: Option<&Checkin> = res.first();
             Ok(warp::reply::with_status(
                 warp::reply::json(&checkin),
                 StatusCode::OK,

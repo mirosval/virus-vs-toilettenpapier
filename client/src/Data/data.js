@@ -87,15 +87,10 @@ const SOCIAL_DATA = {
   ]
 };
 
-const FOOTER_DATA = {
-  DESCRIPTION:
-    "We are typically focused on result-based maketing in the digital world. Also, we evaluate your brand’s needs and develop a powerful strategy that maximizes profits.",
-  CONTACT_DETAILS: {
-    HEADING: "Contact us",
-    ADDRESS: "La trobe street docklands, Melbourne",
-    MOBILE: "+1 61234567890",
-    EMAIL: "nixalar@gmail.com"
-  },
+const DATA_ENTRY = {
+  GET_LOCATION: "Momentanen Standort abfragen",
+  GOODS_UNAVAILABLE: "Welche Waren sind ausverkauft?",
+  CROWDEDNESS: "Wie voll war der Laden?",
   SUBMIT: "Daten absenden",
   SEARCH_STORE: "In welchem Laden warst du?"
 };
@@ -108,6 +103,6 @@ const MOCK_DATA = {
   ABOUT_DATA,
   TESTIMONIAL_DATA,
   SOCIAL_DATA,
-  FOOTER_DATA
+  DATA_ENTRY
 };
 export default MOCK_DATA;

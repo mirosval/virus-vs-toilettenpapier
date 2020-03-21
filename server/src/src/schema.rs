@@ -1,8 +1,4 @@
-
 table! {
-    use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Int4, Text, Timestamp};
-
     checkins (id) {
         id -> Int4,
         gps -> Point,
@@ -28,9 +24,6 @@ table! {
 }
 
 table! {
-    use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Int4, Text};
-
     location_reports (id) {
         id -> Text,
         coordinates -> Point,

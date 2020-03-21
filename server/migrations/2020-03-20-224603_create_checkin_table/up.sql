@@ -2,7 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS checkins (
     id SERIAL PRIMARY KEY,
-    gps_lat POINT NOT NULL, 
+    gps POINT NOT NULL, 
     location_name TEXT NOT NULL,
     crowded_level INTEGER NOT NULL, 
     user_id TEXT NOT NULL,

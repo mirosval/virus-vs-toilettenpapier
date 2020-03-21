@@ -19,7 +19,18 @@ use chrono::NaiveDateTime;
 #[derive(Debug, Insertable, Serialize, Deserialize)]
 #[table_name="checkins"]
 pub struct NewCheckin {
-    pub gps_lat: PgPoint,
+    pub gps: PgPoint,
+    pub location_name: String,
+    pub crowded_level: i32,
+    pub user_id: String,
+    pub client_id: String,
+    pub created_at: NaiveDateTime,
+}
+
+#[derive(Debug, Queryable, Serialize, Deserialize)]
+pub struct Checkin {
+    pub id: i32,
+    pub gps: PgPoint,
     pub location_name: String,
     pub crowded_level: i32,
     pub user_id: String,

@@ -3,20 +3,6 @@
   const { HEADING, DECRIPTION, TUTORIAL_URL, WATCH_TUTORIAL } = bannerData;
 </script>
 
-<section class="main-bgcolor light-color" id="banner">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <h1>{HEADING}</h1>
-        <p>{DECRIPTION}</p>
-      </div>
-      <div class="col-md-3">
-        <img src="images/cart.png" alt="" class="img-fluid" />
-      </div>
-    </div>
-  </div>
-</section>
-
 <style>
   section {
     padding-top: 5%;
@@ -39,3 +25,17 @@
     text-decoration: none;
   }
 </style>
+
+<section class="light-color" id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <h1>{HEADING}</h1>
+        <p>{DECRIPTION}</p>
+      </div>
+      <div class="col-md-3">
+        <img src="images/cart.png" alt="" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</section>

@@ -90,7 +90,6 @@ mod handlers {
     use super::Pool;
     use crate::model::{Checkin, NewCheckin, NewJsonCheckin};
     use crate::schema::checkins;
-    use diesel::sql_query;
     use diesel::RunQueryDsl;
     use std::convert::Infallible;
     use warp::http::StatusCode;
@@ -123,22 +122,25 @@ mod handlers {
         pool: Pool,
     ) -> Result<impl warp::Reply, Infallible> {
         info!("create_checkin");
-let checkin = NewCheckin::from(json_checkin);
+        let checkin = NewCheckin::from(json_checkin);
         pool.get()
             .and_then(|conn| {
                 let res: Result<Checkin, _> = diesel::insert_into(checkins::table)
                     .values(checkin)
                     .get_result(&conn);
                 match res {
-                    Ok(checkin) => Ok(StatusCode::CREATED),
+                    Ok(checkin) => {
+                        info!("inserted checkin: {:?}", &checkin);
+                        Ok(StatusCode::CREATED)
+                    },
                     Err(e) => {
-                        // log
+                        error!("error inserting checkin {}", &e);
                         Ok(StatusCode::INTERNAL_SERVER_ERROR)
                     }
                 }
             })
             .or_else(|e| {
-                // log
+                error!("error inserting checkin {}", &e);
                 Ok(StatusCode::INTERNAL_SERVER_ERROR)
             })
     }
@@ -148,8 +150,6 @@ let checkin = NewCheckin::from(json_checkin);
 mod tests {
     use crate::get_connection_pool;
     use crate::model::NewJsonCheckin;
-    use chrono::Utc;
-    use diesel_geometry::data_types::PgPoint;
     use warp::http::StatusCode;
     use warp::test::request;
 

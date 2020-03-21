@@ -28,7 +28,7 @@ table! {
 
 table! {
     use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Text, Int4, Timestamp};
+    use diesel::sql_types::{Text, Int4};
 
     location_reports (id) {
         id -> Text,

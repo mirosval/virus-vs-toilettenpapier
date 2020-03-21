@@ -2,7 +2,9 @@
 export let CROWDEDNESS;
 </script>
 
-<div class="slidecontainer container">
+<div class="container-fluid">
+  ...
+</div>
   <div class="row">
     <div class="col">
       {CROWDEDNESS}

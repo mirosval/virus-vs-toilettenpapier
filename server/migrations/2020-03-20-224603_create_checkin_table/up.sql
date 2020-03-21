@@ -11,12 +11,12 @@ CREATE TABLE IF NOT EXISTS checkins (
 );
 
 CREATE TABLE IF NOT EXISTS goods (
-    id TEXT PRIMARY KEY
+    name TEXT PRIMARY KEY
 );
 
 CREATE TABLE IF NOT EXISTS missing_goods (
-    id SERIAL PRIMARY KEY,
     checkin_id INTEGER REFERENCES checkins(id),
-    good_id TEXT REFERENCES goods(id)
+    good_id TEXT REFERENCES goods(name),
+    PRIMARY KEY (checkin_id, good_id)
 );
 

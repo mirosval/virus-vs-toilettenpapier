@@ -1,7 +1,6 @@
-
 table! {
     use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Int4, Text, Timestamp};
+    use diesel::sql_types::{Text, Int4, Timestamp};
 
     checkins (id) {
         id -> Int4,
@@ -15,8 +14,8 @@ table! {
 }
 
 table! {
-    goods (id) {
-        id -> Text,
+    goods (name) {
+        name -> Text,
     }
 }
 
@@ -29,7 +28,7 @@ table! {
 
 table! {
     use diesel_geometry::sql_types::Point;
-    use diesel::sql_types::{Int4, Text};
+    use diesel::sql_types::{Text, Int4, Timestamp};
 
     location_reports (id) {
         id -> Text,
@@ -39,10 +38,9 @@ table! {
 }
 
 table! {
-    missing_goods (id) {
-        id -> Int4,
-        checkin_id -> Nullable<Int4>,
-        good_id -> Nullable<Text>,
+    missing_goods (checkin_id, good_id) {
+        checkin_id -> Int4,
+        good_id -> Text,
     }
 }
 

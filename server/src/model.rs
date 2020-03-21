@@ -1,4 +1,4 @@
-use crate::schema::{checkins, location};
+use crate::schema::{goods, missing_goods, checkins, location};
 use chrono::Utc;
 use serde::{Deserialize, Serialize};
 
@@ -16,6 +16,19 @@ pub struct NewLocation<'a> {
 
 use chrono::NaiveDateTime;
 use diesel_geometry::data_types::PgPoint;
+
+#[derive(Debug, Insertable, Queryable, Serialize, Deserialize)]
+#[table_name = "goods"]
+pub struct Good {
+    pub name: String
+}
+
+#[derive(Debug, Insertable, Queryable, Serialize, Deserialize)]
+#[table_name = "missing_goods"]
+pub struct MissingGood {
+    pub checkin_id: i32,
+    pub good_id: String,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NewJsonCheckin {

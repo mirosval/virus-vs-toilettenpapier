@@ -2,7 +2,6 @@
   import Navbar from "./Components/Navbar.svelte";
   import Banner from "./Components/Banner.svelte";
   import GeoLoc from "./Components/GeoLoc.svelte";
-  import DataEntry from "./Components/DataEntry.svelte";
   import DATA from "./Data/data";
   import router from "page.js";
   import routes from "./Routes/Route";

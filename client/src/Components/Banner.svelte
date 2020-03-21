@@ -9,11 +9,6 @@
       <div class="col-md-9">
         <h1>{HEADING}</h1>
         <p>{DECRIPTION}</p>
-<!--        <a href={TUTORIAL_URL} target="_blank" class="light-color">
-          <i class="far fa-play-circle fa-2x watch-btn" />
-          {WATCH_TUTORIAL}
-        </a>
-  -->
       </div>
       <div class="col-md-3">
         <img src="images/cart.png" alt="" class="img-fluid" />

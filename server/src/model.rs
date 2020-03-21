@@ -1,20 +1,21 @@
 use serde::{Serialize, Deserialize};
-use crate::schema::{location, checkins};
-
-#[derive(Eq, PartialEq, Debug, Queryable)]
-pub struct Location {
-    pub id: i32,
-    name: String,
-}
-
-#[derive(Insertable)]
-#[table_name="location"]
-pub struct NewLocation<'a> {
-    pub name: &'a str,
-}
+use crate::schema::{supermarkets, checkins};
 
 use diesel_geometry::data_types::PgPoint;
 use chrono::NaiveDateTime;
+
+#[derive(Debug, Insertable, Serialize, Deserialize)]
+#[table_name="supermarkets"]
+pub struct Supermarket {
+    pub id: String,
+    pub name: Option<String>,
+    pub lat: f64,
+    pub lon: f64,
+    pub housenumber: Option<String>,
+    pub city: Option<String>,
+    pub country: Option<String>,
+    pub brand: Option<String>,
+}
 
 #[derive(Debug, Insertable, Serialize, Deserialize)]
 #[table_name="checkins"]

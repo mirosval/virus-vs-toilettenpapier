@@ -82,4 +82,8 @@ use std::convert::Infallible;
     pub async fn create_checkin(create: NewCheckin, db: Db) -> Result<impl warp::Reply, Infallible> {
         Ok(StatusCode::CREATED)
     }
+
+    pub async fn get_markets(lat: f64, lon: f64, db: Db) -> Result<impl warp::Reply, Infallible> {
+        Ok(StatusCode::ACCEPTED)
+    }
 }

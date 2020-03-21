@@ -7,6 +7,7 @@
     SEARCH_STORE
   } = footerData;
   const { HEADING, ADDRESS, MOBILE, EMAIL } = CONTACT_DETAILS;
+  import CrowdednessSlider from "./CrowdednessSlider.svelte";
 </script>
 
 <main>
@@ -19,13 +20,7 @@
           class="form-control round-border"
           placeholder="{SEARCH_STORE}"
           />
-        <input id="ex1"
-         data-slider-id='ex1Slider'
-         type="text"
-         data-slider-min="0"
-         data-slider-max="5"
-         data-slider-step="1"
-         data-slider-value="3"/>
+        <CrowdednessSlider/>
 
         <button type="button" class="btn btn-outline-dark round-border">
           {SUBMIT}

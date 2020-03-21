@@ -1,6 +1,7 @@
 :root {
   --gradient: linear-gradient(90deg, #0072ff 0%, #00d4ff 100%);
   --light: #fff;
+  --green: #4CAF50;
   --grey: #f8f9fa;
 }
 
@@ -12,7 +13,7 @@ body {
   scroll-behavior: smooth;
 }
 .main-bgcolor {
-  background-image: var(--gradient);
+  background: var(--green);
 }
 .light-color {
   color: var(--light) !important;

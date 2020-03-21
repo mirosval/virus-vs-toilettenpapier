@@ -1,5 +1,5 @@
 /**src/Data/data.js**/
-const HEADER = "Nixalar";
+const HEADER = "Stocktastic";
 
 const NAVBAR_DATA = [
   { id: 1, url: "/", label: "Home" },
@@ -12,7 +12,7 @@ const NAVBAR_DATA = [
 const BANNER_DATA = {
   HEADING: "Bestands-Tracker",
   DECRIPTION:
-    "Die beste App, um herauszufinden wo man sicher einkauft.",
+    "Sicher in Läden mit Verfügbarkeit und ohne Warteschlange einkaufen",
   TUTORIAL_URL:
     "https://www.thinkwithgoogle.com/intl/en-gb/marketing-resources/programmatic/google-digital-academy/",
   WATCH_TUTORIAL: "Watch Tutorials"
@@ -99,8 +99,8 @@ const FOOTER_DATA = {
     MOBILE: "+1 61234567890",
     EMAIL: "nixalar@gmail.com"
   },
-  SUBSCRIBE_NEWSLETTER: "Subscribe newsletter",
-  SEARCH_STORE: "Search store"
+  SUBMIT: "Daten absenden",
+  SEARCH_STORE: "In welchem Laden warst du?"
 };
 
 const MOCK_DATA = {

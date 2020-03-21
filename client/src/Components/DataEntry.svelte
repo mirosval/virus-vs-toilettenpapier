@@ -3,31 +3,36 @@
   const {
     DESCRIPTION,
     CONTACT_DETAILS,
-    SUBSCRIBE_NEWSLETTER,
+    SUBMIT,
     SEARCH_STORE
   } = footerData;
   const { HEADING, ADDRESS, MOBILE, EMAIL } = CONTACT_DETAILS;
 </script>
 
 <main>
-    <div class="container">
-      <div class="col-sm-3">
-      <p/>
-      </div>
-      <div class="col-sm-3">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+      <hr/>
         <input
           type="email"
           class="form-control round-border"
           placeholder="{SEARCH_STORE}"
           />
+        <input id="ex1"
+         data-slider-id='ex1Slider'
+         type="text"
+         data-slider-min="0"
+         data-slider-max="5"
+         data-slider-step="1"
+         data-slider-value="3"/>
 
         <button type="button" class="btn btn-outline-dark round-border">
-          {SUBSCRIBE_NEWSLETTER}
+          {SUBMIT}
         </button>
       </div>
-      <div>
-      </div>
-   </div>
+    </div>
+  </div>
 </main>
 
 <style>

@@ -7,12 +7,10 @@
 </script>
 
 <main>
-<!-- Navbar -->
-<Navbar navlists={DATA.NAVBAR_DATA} header={DATA.HEADER} />
-<!-- Banner -->
-<Banner bannerData={DATA.BANNER_DATA} } />
-	<GeoLoc/>
-	<DataEntry footerData={DATA.FOOTER_DATA} header={DATA.HEADER} />
+    <Navbar navlists={DATA.NAVBAR_DATA} header={DATA.HEADER} />
+    <Banner bannerData={DATA.BANNER_DATA} } />
+    <GeoLoc/>
+    <DataEntry footerData={DATA.FOOTER_DATA} header={DATA.HEADER} />
 </main>
 
 <style>

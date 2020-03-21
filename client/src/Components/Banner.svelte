@@ -1,33 +1,28 @@
-<!--src/Components/Banner/Banner.svelte-->
-
 <script>
   export let bannerData = {};
   const { HEADING, DECRIPTION, TUTORIAL_URL, WATCH_TUTORIAL } = bannerData;
 </script>
-<!------------------------------------------->
-<!----------------MARKUP----------------------->
-<!------------------------------------------->
+
 <section class="main-bgcolor light-color" id="banner">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-9">
         <h1>{HEADING}</h1>
         <p>{DECRIPTION}</p>
-        <a href={TUTORIAL_URL} target="_blank" class="light-color">
+<!--        <a href={TUTORIAL_URL} target="_blank" class="light-color">
           <i class="far fa-play-circle fa-2x watch-btn" />
           {WATCH_TUTORIAL}
         </a>
+  -->
       </div>
-      <div class="col-md-6">
-        <img src="images/home.png" alt="" class="img-fluid" />
+      <div class="col-md-3">
+        <img src="images/cart.png" alt="" class="img-fluid" />
       </div>
     </div>
   </div>
   <img src="images/wave1.png" alt="" class="wave-img" />
 </section>
-<!------------------------------------------->
-<!----------------STYLE----------------------->
-<!------------------------------------------->
+
 <style>
   section {
     padding-top: 5%;

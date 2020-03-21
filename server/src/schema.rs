@@ -5,7 +5,7 @@ table! {
 
     checkins (id) {
         id -> Int4,
-        gps_lat -> Point,
+        gps -> Point,
         location_name -> Text,
         crowded_level -> Int4,
         user_id -> Text,

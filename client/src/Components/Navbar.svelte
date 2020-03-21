@@ -1,17 +1,39 @@
-<!--src/Components/Navbar/Navbar.svelte-->
-
 <script>
   export let navlists = [];
   export let header;
 </script>
+
+<style>
+  #nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .navbar {
+    padding: 0 20px !important;
+    height: 50px;
+  }
+
+  .navbar-nav li {
+    padding: 0 0 0 20px;
+  }
+
+  .navbar-nav li a {
+    font-weight: 600;
+    text-transform: uppercase;
+    float: right;
+    text-align: left;
+  }
+</style>
+
+<!--src/Components/Navbar/Navbar.svelte-->
 <!------------------------------------------->
 <!----------------MARKUP----------------------->
 <!------------------------------------------->
 <section id="nav-bar">
   <nav class="navbar main-bgcolor navbar-expand-md navbar-dark">
-    <a class="navbar-brand company_brand" href="/">
-      {header}
-    </a>
+    <a class="navbar-brand company_brand" href="/">{header}</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -36,25 +58,3 @@
 <!------------------------------------------->
 <!----------------STYLE----------------------->
 <!------------------------------------------->
-<style>
-  #nav-bar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .navbar {
-    padding: 0 20px !important;
-  }
-
-  .navbar-nav li {
-    padding: 0 0 0 20px;
-  }
-
-  .navbar-nav li a {
-    font-weight: 600;
-    text-transform: uppercase;
-    float: right;
-    text-align: left;
-  }
-</style>

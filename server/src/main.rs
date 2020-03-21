@@ -57,7 +57,10 @@ mod filters {
     pub fn checkins_list(
         db: Pool,
     ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-        warp::path("checkins").and(warp::get()).map(|| "checkin")
+        warp::path("checkins")
+            .and(warp::get())
+            .and(with_db(db))
+            .and_then(handlers::list_checkins)
     }
 
     pub fn checkins_create(
@@ -87,16 +90,39 @@ mod handlers {
     use super::Pool;
     use crate::model::{Checkin, NewCheckin};
     use crate::schema::checkins;
+    use diesel::sql_query;
     use diesel::RunQueryDsl;
     use std::convert::Infallible;
     use warp::http::StatusCode;
+
+    pub async fn list_checkins(pool: Pool) -> Result<impl warp::Reply, Infallible> {
+        pool.get()
+            .and_then(|conn| {
+                use crate::schema::checkins::dsl::checkins;
+                let aa: Vec<Checkin> = checkins.load(&conn).unwrap();
+                let checkin = aa.first();
+                // let checkins: Vec<Checkin> = sql_query("SELECT * FROM checkins ORDER BY created_at DESC")
+                //     .load(&conn)
+                //     .unwrap();
+                Ok(warp::reply::with_status(
+                    warp::reply::json(&checkin),
+                    StatusCode::OK,
+                ))
+            })
+            .or_else(|e| {
+                error!("Failed listing checins {}", &e);
+                Ok(warp::reply::with_status(
+                    warp::reply::json(&""),
+                    StatusCode::INTERNAL_SERVER_ERROR,
+                ))
+            })
+    }
 
     pub async fn create_checkin(
         checkin: NewCheckin,
         pool: Pool,
     ) -> Result<impl warp::Reply, Infallible> {
-        info!("Handler");
-        dbg!("aaa");
+        info!("create_checkin");
         pool.get()
             .and_then(|conn| {
                 let res: Result<Checkin, _> = diesel::insert_into(checkins::table)

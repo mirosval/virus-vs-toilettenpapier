@@ -3,8 +3,10 @@ extern crate diesel;
 #[macro_use]
 extern crate log;
 
-pub mod model;
-pub mod schema;
+mod model;
+mod schema;
+mod handlers;
+mod filters;
 
 use diesel::r2d2;
 use diesel::PgConnection;
@@ -40,110 +42,6 @@ async fn main() {
 
     info!("starting server");
     warp::serve(routes).run(([127, 0, 0, 1], 3000)).await;
-}
-
-mod filters {
-    use super::handlers;
-    use super::model::NewJsonCheckin;
-    use super::Pool;
-    use warp::Filter;
-
-    pub fn checkins(
-        db: Pool,
-    ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-        warp::path("v1").and(checkins_list(db.clone()).or(checkins_create(db.clone())))
-    }
-
-    pub fn checkins_list(
-        db: Pool,
-    ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-        warp::path("checkins")
-            .and(warp::get())
-            .and(with_db(db))
-            .and_then(handlers::list_checkins)
-    }
-
-    pub fn checkins_create(
-        db: Pool,
-    ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-        warp::path("checkins")
-            .and(warp::post())
-            .and(json_body())
-            .and(with_db(db))
-            .and_then(handlers::create_checkin)
-    }
-
-    fn json_body() -> impl Filter<Extract = (NewJsonCheckin,), Error = warp::Rejection> + Clone {
-        // When accepting a body, we want a JSON body
-        // (and to reject huge payloads)...
-        warp::body::content_length_limit(1024 * 16).and(warp::body::json())
-    }
-
-    fn with_db(
-        db: Pool,
-    ) -> impl Filter<Extract = (Pool,), Error = std::convert::Infallible> + Clone {
-        warp::any().map(move || db.clone())
-    }
-}
-
-mod handlers {
-    use super::Pool;
-    use crate::model::{Checkin, NewCheckin, NewJsonCheckin};
-    use crate::schema::checkins;
-    use diesel::RunQueryDsl;
-    use std::convert::Infallible;
-    use warp::http::StatusCode;
-
-    pub async fn list_checkins(pool: Pool) -> Result<impl warp::Reply, Infallible> {
-        pool.get()
-            .and_then(|conn| {
-                use crate::schema::checkins::dsl::checkins;
-                let aa: Vec<Checkin> = checkins.load(&conn).unwrap();
-                let checkin = aa.first();
-                // let checkins: Vec<Checkin> = sql_query("SELECT * FROM checkins ORDER BY created_at DESC")
-                //     .load(&conn)
-                //     .unwrap();
-                Ok(warp::reply::with_status(
-                    warp::reply::json(&checkin),
-                    StatusCode::OK,
-                ))
-            })
-            .or_else(|e| {
-                error!("Failed listing checins {}", &e);
-                Ok(warp::reply::with_status(
-                    warp::reply::json(&""),
-                    StatusCode::INTERNAL_SERVER_ERROR,
-                ))
-            })
-    }
-
-    pub async fn create_checkin(
-        json_checkin: NewJsonCheckin,
-        pool: Pool,
-    ) -> Result<impl warp::Reply, Infallible> {
-        info!("create_checkin");
-        let checkin = NewCheckin::from(json_checkin);
-        pool.get()
-            .and_then(|conn| {
-                let res: Result<Checkin, _> = diesel::insert_into(checkins::table)
-                    .values(checkin)
-                    .get_result(&conn);
-                match res {
-                    Ok(checkin) => {
-                        info!("inserted checkin: {:?}", &checkin);
-                        Ok(StatusCode::CREATED)
-                    },
-                    Err(e) => {
-                        error!("error inserting checkin {}", &e);
-                        Ok(StatusCode::INTERNAL_SERVER_ERROR)
-                    }
-                }
-            })
-            .or_else(|e| {
-                error!("error inserting checkin {}", &e);
-                Ok(StatusCode::INTERNAL_SERVER_ERROR)
-            })
-    }
 }
 
 #[cfg(test)]

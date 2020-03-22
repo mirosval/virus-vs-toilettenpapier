@@ -46,14 +46,27 @@
   getLocation();
 </script>
 
-<style>
-  .image {
-    width: 100%;
-    object-fit: cover;
-    height: calc(100vh - 60px);
-  }
-</style>
+<section
+  class="light-color alert alert-light shadow-sm p-4"
+  id="banner"
+  role="alert">
+  <div class="container mb-4">
+    <h6 class="text-dark">Dein aktueller Standort:</h6>
+    <p class="text-dark mb-0">{geoloc}</p>
+  </div>
+  <form>
+    <div class="form-group mb-3">
+      <label class="text-dark" for="locationInput">Standort festlegen</label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="locationInput"
+        placeholder="Altona Hauptbahnhof"
+        aria-describedby="location help" />
+    </div>
 
-<main>
-  <img class="image" src="heatmap_dummy.png" alt="Heatmap dummy" />
-</main>
+    <button type="submit" class="btn btn-outline-dark btn-lg btn-block mb-3">
+      Submit
+    </button>
+  </form>
+</section>

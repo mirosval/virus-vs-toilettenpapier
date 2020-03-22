@@ -3,39 +3,12 @@
   const { HEADING, DECRIPTION, TUTORIAL_URL, WATCH_TUTORIAL } = bannerData;
 </script>
 
-<style>
-  section {
-    padding-top: 5%;
-  }
-
-  h1 {
-    font-size: 40px;
-    font-weight: 600;
-    margin-top: 100px;
-    text-transform: uppercase;
-  }
-
-  .watch-btn {
-    margin: auto 20px;
-    position: relative;
-    top: 8px;
-  }
-
-  section a {
-    text-decoration: none;
-  }
-</style>
-
-<section class="light-color" id="banner">
+<section
+  class="light-color alert alert-light shadow-sm p-4"
+  id="banner"
+  role="alert">
   <div class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <h1>{HEADING}</h1>
-        <p>{DECRIPTION}</p>
-      </div>
-      <div class="col-md-3">
-        <img src="images/cart.png" alt="" class="img-fluid" />
-      </div>
-    </div>
+    <h5 class="text-dark">{HEADING}</h5>
+    <p class="text-dark mb-0">{DECRIPTION}</p>
   </div>
 </section>

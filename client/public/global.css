@@ -1,7 +1,7 @@
 :root {
   --gradient: linear-gradient(90deg, #0072ff 0%, #00d4ff 100%);
   --light: #fff;
-  --green: #4caf50;
+  --green-bg: #74e19f;
   --grey: #f8f9fa;
   --blue-accent: #007bc8;
 }
@@ -22,6 +22,10 @@ body {
 }
 .grey-bgcolor {
   background: var(--grey);
+}
+
+.green-bgcolor {
+  background: var(--green-bg) !important;
 }
 .company_brand {
   font-size: x-large;

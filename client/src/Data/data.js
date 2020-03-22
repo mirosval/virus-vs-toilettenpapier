@@ -1,5 +1,5 @@
 /**src/Data/data.js**/
-const HEADER = "Stocktastic";
+const HEADER = "SimS - Sicherheit im Supermarkt";
 
 const NAVBAR_DATA = [
   { id: 1, url: "/", label: "Home" },
@@ -9,7 +9,7 @@ const NAVBAR_DATA = [
 const BANNER_DATA = {
   HEADING: "Bestands-Tracker",
   DECRIPTION:
-    "Sicher in Läden mit Verfügbarkeit und ohne Warteschlange einkaufen",
+    "Prüfe mit nur einem Klick, wie der aktuelle Andrang und die Verfügbarkeit von deinem Supermarkt ist.",
   TUTORIAL_URL:
     "https://www.thinkwithgoogle.com/intl/en-gb/marketing-resources/programmatic/google-digital-academy/",
   WATCH_TUTORIAL: "Watch Tutorials"

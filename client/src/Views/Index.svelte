@@ -19,8 +19,8 @@
 
   <div class="row ">
     <aside
-      class="d-flex flex-column justify-content-between left-area col
-      main-bgcolor pt-3">
+      class="d-flex flex-column justify-content-between left-area col bg-light
+      pt-3">
       <div class="mb-5">
         <CurrentLocation />
         <a href="/add-location" class="btn btn-success btn-lg btn-block">
@@ -29,7 +29,7 @@
       </div>
       <Banner bannerData={DATA.BANNER_DATA} } />
     </aside>
-    <div class="col-xl-9">
+    <div class="col-xl-9 p-0">
       <GeoLoc />
     </div>
   </div>

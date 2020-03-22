@@ -55,5 +55,8 @@
 </style>
 
 <main>
-  <img class="image" src="heatmap_dummy.png" alt="Heatmap dummy" />
+  <img
+    class="image"
+    src="/images/supermarket-heatmap.png"
+    alt="Heatmap dummy" />
 </main>

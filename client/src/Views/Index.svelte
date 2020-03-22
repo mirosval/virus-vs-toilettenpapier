@@ -15,15 +15,18 @@
   }
 </style>
 
-<div class="container-fluid">
+<div class="index-view container-fluid">
 
-  <div class="row index-view">
-    <aside class="left-area col main-bgcolor pt-3">
-      <h4 class="text-light">Meine Aktuelle Poistion lautet:</h4>
-      <CurrentLocation />
-      <a href="/add-location" class="btn btn-success btn-lg btn-block">
-        Standort Eintragen
-      </a>
+  <div class="row ">
+    <aside
+      class="d-flex flex-column justify-content-between left-area col
+      main-bgcolor pt-3">
+      <div class="mb-5">
+        <CurrentLocation />
+        <a href="/add-location" class="btn btn-success btn-lg btn-block">
+          Standort Eintragen
+        </a>
+      </div>
       <Banner bannerData={DATA.BANNER_DATA} } />
     </aside>
     <div class="col-xl-9">

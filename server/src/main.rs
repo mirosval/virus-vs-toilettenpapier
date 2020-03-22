@@ -38,7 +38,8 @@ async fn main() {
     pretty_env_logger::init();
     let pool = get_connection_pool();
     let api = filters::checkins(pool);
-    let routes = api.with(warp::log("checkins"));
+    let cors = warp::cors().allow_origin("*").allow_methods(vec!["GET", "POST", "PUT", "DELETE"]);
+    let routes = api.with(warp::log("checkins")).with(cors);
 
     info!("starting server");
     warp::serve(routes).run(([127, 0, 0, 1], 3000)).await;

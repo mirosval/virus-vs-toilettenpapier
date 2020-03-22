@@ -1,6 +1,7 @@
 <script>
   import Banner from "../Components/Banner.svelte";
   import GeoLoc from "../Components/GeoLoc.svelte";
+  import CurrentLocation from "../Components/CurrentLocation.svelte";
   import DATA from "../Data/data";
 </script>
 
@@ -19,12 +20,13 @@
   <div class="row index-view">
     <aside class="left-area col main-bgcolor pt-3">
       <h4 class="text-light">Meine Aktuelle Poistion lautet:</h4>
+      <CurrentLocation />
       <a href="/add-location" class="btn btn-success btn-lg btn-block">
         Standort Eintragen
       </a>
       <Banner bannerData={DATA.BANNER_DATA} } />
     </aside>
-    <div class="col-9">
+    <div class="col-xl-9">
       <GeoLoc />
     </div>
   </div>

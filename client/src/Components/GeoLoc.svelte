@@ -46,7 +46,14 @@
   getLocation();
 </script>
 
+<style>
+  .image {
+    width: 100%;
+    object-fit: cover;
+    height: calc(100vh - 60px);
+  }
+</style>
+
 <main>
-  <p>It seems you are here: {geoloc}</p>
-  <img src="heatmap_dummy.png" alt="Heatmap dummy" />
+  <img class="image" src="heatmap_dummy.png" alt="Heatmap dummy" />
 </main>

@@ -17,7 +17,7 @@ pub fn checkins(
 fn checkins_around(
     db: Pool,
 ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-    warp::path("checkins-around")
+    warp::path!("checkins" / "around")
         .and(warp::post())
         .and(json_body::<CheckinsAroundRequest>())
         .and(with_db(db))

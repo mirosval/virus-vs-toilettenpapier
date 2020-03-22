@@ -47,11 +47,23 @@ async fn main() {
 #[cfg(test)]
 mod tests {
     use crate::get_connection_pool;
+    use crate::model::CheckinsAroundRequest;
     use crate::model::NewJsonCheckin;
     use warp::http::StatusCode;
     use warp::test::request;
 
     use super::filters;
+
+    fn make_checkin() -> NewJsonCheckin {
+        NewJsonCheckin {
+            gps: [53.55, 9.97],
+            location_name: "some location".to_string(),
+            crowded_level: 3,
+            user_id: "some user".to_string(),
+            client_id: "some client".to_string(),
+            missing_goods: vec![String::from("flour")],
+        }
+    }
 
     #[tokio::test]
     async fn test_checkin() {
@@ -61,17 +73,41 @@ mod tests {
         let res = request()
             .method("POST")
             .path("/v1/checkins")
-            .json(&NewJsonCheckin {
-                gps: [1.1, 2.2],
-                location_name: "some location".to_string(),
-                crowded_level: 3,
-                user_id: "some user".to_string(),
-                client_id: "some client".to_string(),
-                missing_goods: vec![String::from("flour")],
-            })
+            .json(&make_checkin())
             .reply(&api)
             .await;
 
         assert_eq!(res.status(), StatusCode::CREATED);
+    }
+
+    #[tokio::test]
+    async fn test_checkins_around() {
+        let db = get_connection_pool();
+        let api = filters::checkins(db);
+
+        let res = request()
+            .method("POST")
+            .path("/v1/checkins")
+            .json(&make_checkin())
+            .reply(&api)
+            .await;
+
+        assert_eq!(res.status(), StatusCode::CREATED);
+
+        let req = CheckinsAroundRequest {
+            gps: [53.55, 9.97],
+            radius: 1000,
+            offset: 0,
+            limit: 10,
+        };
+
+        let res = request()
+            .method("POST")
+            .path("/v1/checkins/around")
+            .json(&req)
+            .reply(&api)
+            .await;
+
+        assert_eq!(res.status(), StatusCode::OK);
     }
 }

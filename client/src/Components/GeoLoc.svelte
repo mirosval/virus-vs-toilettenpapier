@@ -1,10 +1,31 @@
 <script>
+const url = 'http://localhost:3000/v1/checkins/around';
 let geoloc;
+
+function getNearbyCheckins(lat, lng) {
+    const payload = {
+        gps: [lat, lng],
+        radius: 1000,
+        offset: 0,
+        limit: 10,
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then((data) => {
+        console.log(data);
+    });
+}
 
 function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     geoloc = "Latitude : " + latitude + " Longitude: " + longitude;
+    getNearbyCheckins(latitude, longitude);
 }
 
 function errorHandler(err) {

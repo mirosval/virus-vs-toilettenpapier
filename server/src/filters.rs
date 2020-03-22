@@ -9,9 +9,23 @@ pub fn checkins(
 ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
     warp::path("v1").and(
         checkins_around(db.clone())
+            .or(checkins_around_cors())
             .or(checkins_list(db.clone()))
             .or(checkins_create(db.clone())),
     )
+}
+
+fn checkins_around_cors() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone
+{
+    warp::path!("checkins" / "around")
+        .and(warp::head())
+        .and_then(|| {
+            Ok(warp::reply::with_header(
+                warp::reply::json(&""),
+                "Access-Control-Allow-Origin",
+                "http://localhost:5000",
+            ))
+        })
 }
 
 fn checkins_around(

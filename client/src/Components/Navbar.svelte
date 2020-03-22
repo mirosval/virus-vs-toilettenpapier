@@ -4,7 +4,7 @@
 </script>
 
 <style>
-  #nav-bar {
+  .nav-bar {
     position: sticky;
     top: 0;
     z-index: 10;
@@ -12,7 +12,7 @@
 
   .navbar {
     padding: 0 20px !important;
-    height: 50px;
+    height: 60px;
   }
 
   .navbar-nav li {
@@ -21,19 +21,31 @@
 
   .navbar-nav li a {
     font-weight: 600;
-    text-transform: uppercase;
     float: right;
     text-align: left;
   }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand__icon {
+    width: 40px;
+    margin-right: 20px;
+  }
 </style>
 
-<!--src/Components/Navbar/Navbar.svelte-->
-<!------------------------------------------->
-<!----------------MARKUP----------------------->
-<!------------------------------------------->
-<section id="nav-bar">
-  <nav class="navbar main-bgcolor navbar-expand-md navbar-dark">
-    <a class="navbar-brand company_brand" href="/">{header}</a>
+<section class="shadow-sm nav-bar">
+  <nav class="navbar navbar-expand-md navbar-dark main-bgcolor">
+    <a class="navbar-brand" href="/">
+      <img
+        class="navbar-brand__icon"
+        src="images/vvt-shopping-cart.svg"
+        alt="shopping card icon"
+        role="presentation" />
+      <span class="navbar-brand__label h5 mb-0">{header}</span>
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -55,6 +67,3 @@
     </div>
   </nav>
 </section>
-<!------------------------------------------->
-<!----------------STYLE----------------------->
-<!------------------------------------------->

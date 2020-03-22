@@ -1,7 +1,9 @@
 <script>
   import DataEntry from "../Components/DataEntry.svelte";
+  import ContentPage from "../Components/ContentPage.svelte";
   import DATA from "../Data/data";
 </script>
 
-<DataEntry dataEntryData={DATA.DATA_ENTRY}/>
-
+<ContentPage>
+  <DataEntry dataEntryData={DATA.DATA_ENTRY} />
+</ContentPage>
